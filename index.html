@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Site Lang</title>
+
+	<style>body { font-family: Arial, serif; font-size: 11px; color: #444; }</style>
+
+	<script src="libs/modernizr.custom.22628.js"></script>
+
+</head>
+<body>
+
+<h1>Demo Site.Lang</h1>
+<p>
+	Open console :)
+</p>
+
+<script>
+Modernizr.load({
+	load: [
+		"libs/underscore.js",
+		"site.lang.js"
+	],
+	complete: function (  ) {
+
+
+		console.time("Time");
+
+
+
+		var oLang = Site.Lang;
+
+		// Add Messages
+		oLang.init("en", {
+			"Message 1": "Message 1 EN",
+			"Message 2": "Message 2 EN"
+		});
+
+		oLang.init("ru", {
+			"Message 1": "Message 1 RU",
+			"Message 2": "Message 2 RU"
+		});
+
+		oLang.init("de", {
+			"Message 1": "Message 1 DE",
+			"Message 2": "Message 2 DE"
+		});
+
+		// Get Langs
+		console.log ( oLang.getLangs() );
+
+		// Set message
+		oLang.set("Message 1", "For All");
+		oLang.set("en", "Message 1", "For EN Message 1");
+
+		// Get Messages
+		console.log ( oLang.get("ru") );
+		console.log ( oLang.get("Message 1") );
+		console.log ( oLang.get("en", "Message 1") );
+
+
+
+		console.timeEnd("Time");
+
+
+	}
+});
+</script>
+
+</body></html>

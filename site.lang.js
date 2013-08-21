@@ -7,7 +7,7 @@ Site.Lang = function() {
 
 	init = function (  ) {
 
-		if ( typeof arguments === 'undefined' || ! _.isObject ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
 			return false;
 
 		return __init.apply( this, arguments );
@@ -39,7 +39,7 @@ Site.Lang = function() {
 
 	getMessages = function (  ) {
 
-		if ( typeof arguments === 'undefined' || ! _.isObject ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
 			return __getMessages (  );
 
 		return __getMessages.apply( this, arguments );
@@ -51,7 +51,7 @@ Site.Lang = function() {
 		if ( _.size ( messages ) === 0 )
 			return false;
 
-		if ( typeof arguments === 'undefined' || ! _.isObject ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
 			return __clone ( messages );
 
 		var lang = arguments[0];
@@ -84,7 +84,7 @@ Site.Lang = function() {
 
 	get = function (  ) {
 
-		if ( typeof arguments === 'undefined' || ! _.isObject ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
 			return false;
 
 		return __get.apply( this, arguments );
@@ -117,7 +117,7 @@ Site.Lang = function() {
 
 	set = function (  ) {
 
-		if ( typeof arguments === 'undefined' || ! _.isObject ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
 			return false;
 
 		return __set.apply( this, arguments );

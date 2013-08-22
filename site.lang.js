@@ -1,22 +1,30 @@
+/* global _:false */
+
 var Site = Site || {};
 
 Site.Lang = function() {
 
 	var messages = {},
-		defaultLang = "en"
+		defaultLang = "en",
+		version = "0.1",
 
 	init = function (  ) {
 
-		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
+		var arg = arguments;
+
+		if ( ! _.isArguments ( arg ) || _.size( arg ) === 0 ) {
+
 			return false;
 
-		return __init.apply( this, arguments );
+		}
+
+		return __init.apply( this, arg );
 
 	},
 
 	__init = function (  ) {
 
-		var lang, value;
+		var value;
 
 		if ( typeof arguments[1] !== 'undefined' && _.isObject ( arguments[1] ) ) {
 
@@ -39,8 +47,11 @@ Site.Lang = function() {
 
 	getMessages = function (  ) {
 
-		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 ) {
+
 			return __getMessages (  );
+
+		}
 
 		return __getMessages.apply( this, arguments );
 
@@ -48,16 +59,25 @@ Site.Lang = function() {
 
 	__getMessages = function (  ) {
 
-		if ( _.size ( messages ) === 0 )
+		if ( _.size ( messages ) === 0 ) {
+
 			return false;
 
-		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
+		}
+
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 ) {
+
 			return __clone ( messages );
+
+		}
 
 		var lang = arguments[0];
 
-		if ( _.isString ( lang ) && _.has ( messages, lang ) )
+		if ( _.isString ( lang ) && _.has ( messages, lang ) ) {
+
 			return __clone ( messages[lang] );
+
+		}
 
 		return __clone ( messages );
 
@@ -73,8 +93,11 @@ Site.Lang = function() {
 
 	__getLangs = function (  ) {
 
-		if ( typeof messages === 'undefined' || ! _.isObject ( messages ) || _.size( messages ) === 0 )
+		if ( typeof messages === 'undefined' || ! _.isObject ( messages ) || _.size( messages ) === 0 ) {
+
 			return false;
+
+		}
 
 		return _.keys ( messages );
 
@@ -84,28 +107,40 @@ Site.Lang = function() {
 
 	get = function (  ) {
 
-		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 ) {
+
 			return false;
+
+		}
 
 		return __get.apply( this, arguments );
 
 	},
 
-	__get = function ( lang, key ) {
+	__get = function (  ) {
 
-		if ( _.size( arguments ) === 2 )
+		if ( _.size( arguments ) === 2 ) {
+
 			return messages[ arguments[0] ][ arguments[1] ];
 
-		if ( _.has( messages, arguments[0]) )
+		}
+
+		if ( _.has( messages, arguments[0]) ) {
+
 			return messages[ arguments[0] ];
+
+		}
 
 		var arg = arguments[0],
 			data = {};
 
 		_.each(messages, function ( value, key ) {
 
-			if ( _.has( value, arg ) )
+			if ( _.has( value, arg ) ) {
+
 				data[key] = { "message": value[arg] };
+
+			}
 
 		});
 
@@ -117,8 +152,11 @@ Site.Lang = function() {
 
 	set = function (  ) {
 
-		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 )
+		if ( ! _.isArguments ( arguments ) || _.size( arguments ) === 0 ) {
+
 			return false;
+
+		}
 
 		return __set.apply( this, arguments );
 
@@ -176,7 +214,7 @@ Site.Lang = function() {
 
 		function mixin( dest, source, copyFunc ) {
 
-			var name, s, i, empty = {};
+			var name, s, empty = {};
 
 			for ( name in source ) {
 
@@ -194,7 +232,7 @@ Site.Lang = function() {
 
 		}
 
-		if ( ! src || typeof src != "object" || Object.prototype.toString.call( src ) === "[object Function]" ) {
+		if ( ! src || typeof src !== "object" || Object.prototype.toString.call( src ) === "[object Function]" ) {
 
 			// null, undefined, any non-object, or function
 			return src;	// anything
@@ -255,7 +293,9 @@ Site.Lang = function() {
 		set: set,
 		get: get,
 		getLangs: getLangs,
-		getMessages: getMessages
+		getMessages: getMessages,
+		
+		version: version
 	};
 
 }();
